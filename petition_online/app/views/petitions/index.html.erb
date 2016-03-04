@@ -1,11 +1,11 @@
 <h1>Все петиции</h1>
-
 <table>
 <% @petitions.each do |petition| %>
     <tr>
       <td><%= link_to petition.title, petition_path(petition) %></td>
+      <td><%= link_to 'Обновить', edit_petition_path(petition) %></td>
+      <td><%= link_to 'Удалить', petition_path(petition), method: :delete %></td>
     </tr>
   <% end %>
 </table>
-
 <p><%= link_to 'Главная страница', root_url %></p>
