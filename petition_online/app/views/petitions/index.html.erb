@@ -1,0 +1,18 @@
+<h1>Petitions list</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @petitions.each do |petition| %>
+    <tr>
+      <td><%= petition.title %></td>
+      <td><%= petition.text %></td>
+      <td><%= link_to 'Show', petition_path(petition) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Home', root_url %>
