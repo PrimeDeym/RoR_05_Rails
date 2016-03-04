@@ -1,4 +1,13 @@
-<h1>Онлайн петиции</h1> 
-
-<p> <%= link_to 'New petition', new_petition_path%></p>
-<p> <%= link_to 'All petitions', controller: 'petitions' %></p>
+<h1>Онлайн петиции нашего района</h1> 
+<div>
+<p> <%= link_to 'Создать петицию', new_petition_path%></p>
+<p> <%= link_to 'Список петиций', controller: 'petitions' %></p>
+</div>
+<p>Первые 10 петиций</p>
+<table>
+<% @petitions.each do |petition| %>
+    <tr>
+      <td><%= link_to petition.title, petition_path(petition) %></td>
+    </tr>
+  <% end %>
+</table>

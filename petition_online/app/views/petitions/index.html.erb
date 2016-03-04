@@ -1,18 +1,11 @@
-<h1>Petitions list</h1>
- 
+<h1>Все петиции</h1>
+
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-  </tr>
- 
-  <% @petitions.each do |petition| %>
+<% @petitions.each do |petition| %>
     <tr>
-      <td><%= petition.title %></td>
-      <td><%= petition.text %></td>
-      <td><%= link_to 'Show', petition_path(petition) %></td>
+      <td><%= link_to petition.title, petition_path(petition) %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'Home', root_url %>
+<p><%= link_to 'Главная страница', root_url %></p>

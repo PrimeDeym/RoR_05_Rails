@@ -7,5 +7,6 @@
   <strong>Text:</strong>
   <%= @petition.text %>
 </p>
-
-<p><%= link_to 'All petitions', controller: 'petitions' %></p>
+<p><%= link_to 'Создать еще одну петицию', new_petition_path %></p>
+<p><%= link_to 'Список всех петиций', controller: 'petitions' %></p>
+<p><%= link_to 'Главная страница', root_url %></p>
