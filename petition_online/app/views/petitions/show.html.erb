@@ -1,13 +1,3 @@
-<p><%= link_to 'Главная страница', root_url %></p>
-
-<h1>Петиция</h1>
-<p>
-  <strong><%= @petition.title %></strong>
-</p>
- 
-<p>
-  <%= @petition.text %>
-</p>
-
-<p><%= link_to 'Создать петицию', new_petition_path %></p>
-<p><%= link_to 'Список всех петиций', controller: 'petitions' %></p>
+<h2>Петиция</h2>
+<p><strong><%= @petition.title %></strong></p>
+<p><%= @petition.text %></p>

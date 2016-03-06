@@ -1,4 +1,7 @@
 class PetitionsController < ApplicationController
+  
+  before_filter :authorize, only: [:new, :create, :edit, :destroy]
+
   def index
     @petitions = Petition.all
   end
@@ -8,8 +11,10 @@ class PetitionsController < ApplicationController
   end
 
   def create
-    @petition = Petition.new(petition_params)
+    @petition = current_user.petitions.build(petition_params)
     if @petition.save
+      @author = current_user.email
+      flash[:notice] = 'Статья создана'
       redirect_to @petition
     else
       render 'new'
@@ -40,7 +45,11 @@ class PetitionsController < ApplicationController
     redirect_to petitions_path
   end
 
-  private 
+  def user_petitions
+    @petitions = current_user.petitions
+  end
+
+private 
   def petition_params
     params.require(:petition).permit(:title, :text)
   end

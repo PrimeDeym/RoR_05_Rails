@@ -1,0 +1,9 @@
+<h2>Войти</h2>
+<p><%= form_tag sessions_path do %></p>
+<p><%= label_tag :email %></p>
+<p><%= text_field_tag :email, params[:email] %></p>
+
+<p><%= label_tag :password %></p>
+<p><%= password_field_tag :password %></p>
+<p><%= submit_tag 'Войти' %> или <%= link_to 'Зарегестрироваться', new_user_path %> </p> 
+<% end %>

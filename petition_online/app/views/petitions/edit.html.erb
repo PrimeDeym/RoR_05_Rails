@@ -1,11 +1,10 @@
-<%= link_to 'Главная страница', root_url %>
-<h1>Обновить петицию</h1>
+<h2>Обновить петицию</h2>
 <div>
   <% if @petition.errors.any? %>
-  <%= pluralize(@petition.errors.count, 'error')%>: 
-  <% @petition.errors.full_messages.each do |ms| %>
-  <%= ms %>
-  <% end %>
+    <%= pluralize(@petition.errors.count, 'error')%>: 
+    <% @petition.errors.full_messages.each do |ms| %>
+      <%= ms %>
+    <% end %>
   <% end %>
 </div>
 <%= form_for :petition, url: petition_path, method: :patch do |f| %>
@@ -23,4 +22,3 @@
     <%= f.submit "Обновить" %>
   </p>
 <% end %>
-<%= link_to 'Назад', petitions_path %>
