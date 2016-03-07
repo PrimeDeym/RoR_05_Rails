@@ -2,7 +2,7 @@
 <table cellspacing="1" border="1" cellpadding="1" width="600">
   <th> Название </th>
   <th> Автор </th>
-  <% @petitions.each do |petition| %>
+    <% @petitions.each do |petition| %>
     <tr>
       <td><%= link_to petition.title, petition_path(petition) %></td>
       <td><%= petition.user.first_name %> <%= petition.user.last_name %></td>

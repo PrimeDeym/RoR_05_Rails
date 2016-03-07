@@ -13,7 +13,6 @@ class PetitionsController < ApplicationController
   def create
     @petition = current_user.petitions.build(petition_params)
     if @petition.save
-      @author = current_user.email
       flash[:notice] = 'Статья создана'
       redirect_to @petition
     else
