@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PetitionOnline</title>
+  <title>Онлайн петиции нашего района</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<p><%= link_to 'Онлайн петиции нашего района', root_url %>
+<% if current_user %>
+  <%= current_user.email %> (<%= link_to 'Выйти', session_path(session), method: :delete %>)
+  <p><%= link_to 'Мои петиции', petitions_user_petitions_path %></p> </p>
+<% else %>
+  <%= link_to 'Зарегестрироваться', new_user_path %> | <%= link_to 'Войти', new_session_path %>
+<% end %>
+<p><strong style='color: red'><%= flash[:notice] %></p></strong>
+<p><%= link_to 'Все петиции', petitions_path %></p>
+<p><%= link_to 'Создать петицию', new_petition_path %></p>
+
 
 <%= yield %>
 
+<p>Company 2016</p>
 </body>
 </html>
