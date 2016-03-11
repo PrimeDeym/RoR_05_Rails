@@ -1,5 +1,10 @@
 <h2>Обновить петицию</h2>
-<div>
+<%= render 'petition' %>
+
+
+
+
+<!-- <div>
   <% if @petition.errors.any? %>
     <%= pluralize(@petition.errors.count, 'error')%>: 
     <% @petition.errors.full_messages.each do |ms| %>
@@ -7,7 +12,7 @@
     <% end %>
   <% end %>
 </div>
-<%= form_for :petition, url: petition_path, method: :patch do |f| %>
+<%= form_for :petition, url: petition_path do |f| %>
   <p>
     <%= f.label "Название" %><br>
     <%= f.text_field :title %>
@@ -22,3 +27,4 @@
     <%= f.submit "Обновить" %>
   </p>
 <% end %>
+ -->

@@ -1,3 +1,10 @@
 <h2>Петиция</h2>
-<p><strong><%= @petition.title %></strong></p>
+<h3><%= @petition.title %></h3>
+<p><%= @petition.created_at_new %></p> 
 <p><%= @petition.text %></p>
+<p>Голосов: <%= @petition.votes.count %></p>
+<% if @petition.user_id == current_user.id %>
+  <p class="text-danger">Вы не можете голосовать за свою петицию</p>
+<% else %>
+  <p><%= button_to 'Поддержать', petition_votes_path(@petition.id), class: 'btn btn-success' %></p>
+<% end %>

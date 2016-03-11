@@ -1,9 +1,14 @@
-<h2>Мои петиции</h2>
-<table cellspacing="1" border="1" cellpadding="1" width="600">
-<th> Название </th>
+<!-- <h2>Мои петиции</h2>
+<table class="table">
+<thead>
+  <tr>
+    <th>Название</th>
+    <th></th>
+  </tr>
+</thead>
   <% @petitions.each do |petition| %>
   <tr>
-    <td><%= link_to petition.title, petition_path(petition) %></td>
+    <td><%= link_to petition.title, petition_path(petition) %></td>    
   </tr>
   <% end %>
-</table>
+</table> -->

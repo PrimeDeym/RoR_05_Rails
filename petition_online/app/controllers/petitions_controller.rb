@@ -3,7 +3,12 @@ class PetitionsController < ApplicationController
   before_filter :authorize, only: [:new, :create, :edit, :destroy]
 
   def index
-    @petitions = Petition.all
+    if params[:my]
+      @petitions = current_user.petitions
+      # render 'user_petitions'
+    else
+      @petitions = Petition.all
+    end
   end
   
   def new
@@ -13,7 +18,7 @@ class PetitionsController < ApplicationController
   def create
     @petition = current_user.petitions.build(petition_params)
     if @petition.save
-      flash[:notice] = 'Статья создана'
+      flash[:notice] = 'Петиция создана'
       redirect_to @petition
     else
       render 'new'
@@ -31,7 +36,9 @@ class PetitionsController < ApplicationController
   def update
     @petition = Petition.find(params[:id])
     if @petition.update(petition_params)
+      flash[:notice] = "Петиция обновлена"
       redirect_to @petition
+
     else
       render 'edit'
     end
@@ -41,15 +48,16 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
     @petition.destroy
 
-    redirect_to petitions_path
+    redirect_to petitions_path(:my => true)
+    flash[:notice] = "Петиция удалена"
   end
 
-  def user_petitions
-    @petitions = current_user.petitions
-  end
+  # def user_petitions
+  #   @petitions = current_user.petitions
+  # end
 
 private 
   def petition_params
-    params.require(:petition).permit(:title, :text)
+    params.require(:petition).permit(:id, :title, :text)
   end
 end

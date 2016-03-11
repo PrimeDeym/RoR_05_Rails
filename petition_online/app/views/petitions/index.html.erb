@@ -1,11 +1,30 @@
-<h2>Все петиции</h2>
-<table cellspacing="1" border="1" cellpadding="1" width="600">
-  <th> Название </th>
-  <th> Автор </th>
+<h2><%= params[:my] ? 'Мои' : 'Все' %> петиции</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-md-6">Петиция</th>
+      <% unless params[:my] %>
+        <th class="col-md-3">Автор</th>
+      <% end %>
+      <th class="col-md-1 text-center">Голоса</th>
+      <th class="col-md-3 text-center">Дата создания</th>
+      <% if params[:my] %>
+        <th class="col-md-6 text-center" colspan="2">Действия</th>
+      <% end %>
+    </tr>
+  </thead>
   <% @petitions.each do |petition| %>
     <tr>
-      <td><%= link_to petition.title, petition_path(petition) %></td>
-      <td><%= petition.user.first_name %> <%= petition.user.last_name %></td>
+      <td class="col-md-5"><%= link_to petition.title, petition_path(petition) %></td>
+      <% unless params[:my] %>
+        <td class="col-md-3"><%= petition.user.first_name %> <%= petition.user.last_name %></td>
+      <% end %>
+      <td class="col-md-1 text-center"><%= petition.votes.count %></td>
+      <td class="col-md-3 text-center"><%= petition.created_at_new %></td>
+      <% if params[:my] %>
+        <td class="col-md-3 text-center"><%= link_to 'Изменить', edit_petition_path(petition) %></td>
+        <td class="col-md-3 text-center"><%= link_to 'Удалить', petition_path(petition), method: :delete %></</td>
+      <% end %>
     </tr>
   <% end %>
 </table>

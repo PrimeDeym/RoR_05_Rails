@@ -1,8 +1,4 @@
-<h2>Новая петиция</h2>
-<%= render 'petition' %>
-
-
-<!-- <div>
+<div>
   <% if @petition.errors.any? %>
     <%= pluralize(@petition.errors.count, 'error')%>: 
     <% @petition.errors.full_messages.each do |ms| %>
@@ -21,9 +17,8 @@
       <%= f.label 'Описание' %><br>
       <%= f.text_area :text, class: 'form-control', rows: '5' %>
     </div>
-   
     <div class="form-group">
-      <%= f.submit 'Создать', class: 'btn btn-primary' %>
+      <%= f.submit 'Отправить', class: 'btn btn-primary' %>
     </div>
   <% end %>
-</div> -->
+</div>
