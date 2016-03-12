@@ -23,7 +23,7 @@
       <td class="col-md-3 text-center"><%= petition.created_at_new %></td>
       <% if params[:my] %>
         <td class="col-md-3 text-center"><%= link_to 'Изменить', edit_petition_path(petition) %></td>
-        <td class="col-md-3 text-center"><%= link_to 'Удалить', petition_path(petition), method: :delete %></</td>
+        <td class="col-md-3 text-center"><%= link_to 'Удалить', petition_path(petition), method: :delete, data: { confirm: 'Вы уверены?' } %></</td>
       <% end %>
     </tr>
   <% end %>

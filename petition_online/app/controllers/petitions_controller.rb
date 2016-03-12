@@ -16,7 +16,7 @@ class PetitionsController < ApplicationController
   end
 
   def create
-    @petition = current_user.petitions.build(petition_params)
+    @petition = current_user.petitions.create(petition_params)
     if @petition.save
       flash[:notice] = 'Петиция создана'
       redirect_to @petition
@@ -38,7 +38,6 @@ class PetitionsController < ApplicationController
     if @petition.update(petition_params)
       flash[:notice] = "Петиция обновлена"
       redirect_to @petition
-
     else
       render 'edit'
     end
@@ -58,6 +57,6 @@ class PetitionsController < ApplicationController
 
 private 
   def petition_params
-    params.require(:petition).permit(:id, :title, :text)
+    params.require(:petition).permit(:title, :text)
   end
 end

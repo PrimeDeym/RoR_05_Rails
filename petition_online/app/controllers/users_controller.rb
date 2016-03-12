@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_url
-      flash[:notice] = 'Новый пользователь был создан'
+      flash[:notice] = 'Спасибо за регистрацию'
     else
       render 'new'
     end

@@ -1,29 +1,2 @@
 <h2>Новая петиция</h2>
 <%= render 'petition' %>
-
-
-<!-- <div>
-  <% if @petition.errors.any? %>
-    <%= pluralize(@petition.errors.count, 'error')%>: 
-    <% @petition.errors.full_messages.each do |ms| %>
-      <%= ms %>
-    <% end %>
-  <% end %>
-</div>
-<div class="form-group">
-  <%= form_for :petition, url: petitions_path do |f| %>
-    <div class="form-group">
-      <%= f.label 'Название' %><br>
-      <%= f.text_field :title, class: 'form-control' %>
-    </div>
-   
-    <div class="form-group">
-      <%= f.label 'Описание' %><br>
-      <%= f.text_area :text, class: 'form-control', rows: '5' %>
-    </div>
-   
-    <div class="form-group">
-      <%= f.submit 'Создать', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
-</div> -->

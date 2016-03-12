@@ -3,8 +3,19 @@
 <p><%= @petition.created_at_new %></p> 
 <p><%= @petition.text %></p>
 <p>Голосов: <%= @petition.votes.count %></p>
-<% if @petition.user_id == current_user.id %>
-  <p class="text-danger">Вы не можете голосовать за свою петицию</p>
-<% else %>
+<% if current_user.nil? %>
+  <p class="text-danger">Только зарестрированные пользователи могут голосовать</p> 
+<% elsif @petition.user_id != current_user.id %>
   <p><%= button_to 'Поддержать', petition_votes_path(@petition.id), class: 'btn btn-success' %></p>
+<% else %>
+  <p class="text-danger">Ваша</p>
 <% end %>
+
+
+
+
+
+
+
+
+
