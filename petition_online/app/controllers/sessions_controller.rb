@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:notice] = 'Вы вошли'
+      flash[:notice] = 'Добро пожаловать'
       redirect_to root_url
     else
-      flash[:notice] = 'Пароль или логин не подходят'
+      flash[:error] = 'Пароль или логин не подходят'
       render 'new'
     end
   end

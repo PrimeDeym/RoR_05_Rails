@@ -5,10 +5,7 @@ class VotesController < ApplicationController
       @vote = @petition.votes.create(vote_params)
       @vote[:user_id] = current_user.id
       if @vote.save
-        flash[:notice] = 'Спасибо за ваш голос'
-        redirect_to @petition
-      else
-        flash[:error] = 'Вы уже голосовали'
+        flash[:notice] = 'Спасибо за ваш голос!'
         redirect_to @petition
       end  
     end

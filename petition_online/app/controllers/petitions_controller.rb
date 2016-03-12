@@ -5,7 +5,6 @@ class PetitionsController < ApplicationController
   def index
     if params[:my]
       @petitions = current_user.petitions
-      # render 'user_petitions'
     else
       @petitions = Petition.all
     end
@@ -48,7 +47,7 @@ class PetitionsController < ApplicationController
     @petition.destroy
 
     redirect_to petitions_path(:my => true)
-    flash[:notice] = "Петиция удалена"
+    flash[:error] = "Петиция удалена"
   end
 
   # def user_petitions
