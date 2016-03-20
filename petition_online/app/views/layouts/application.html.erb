@@ -2,25 +2,56 @@
 <html>
 <head>
   <title>Онлайн петиции нашего района</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p><%= link_to 'Онлайн петиции нашего района', root_url %>
-<% if current_user %>
-  <%= current_user.email %> (<%= link_to 'Выйти', session_path(session), method: :delete %>)
-  <p><%= link_to 'Мои петиции', petitions_user_petitions_path %></p> </p>
-<% else %>
-  <%= link_to 'Зарегестрироваться', new_user_path %> | <%= link_to 'Войти', new_session_path %>
-<% end %>
-<p><strong style='color: red'><%= flash[:notice] %></p></strong>
-<p><%= link_to 'Все петиции', petitions_path %></p>
-<p><%= link_to 'Создать петицию', new_petition_path %></p>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Онлайн петиции нашего района</a>
+      <div class="pull-right" style="margin: 10px">
+        <span >
+          <% if current_user %>
+            <%= current_user.email %> 
+            (<%= link_to 'Выйти', logout_path %>)
+          <% else %>
+            <%= link_to 'Зарегестрироваться', signup_path %> | <%= link_to 'Войти', login_path %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <%= bootstrap_flash %>
 
 <%= yield %>
 
-<p>Company 2016</p>
+      </div>
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list la">
+              <li><h4><%= link_to "Все петиции", petitions_path  %></h4></li>
+              <li><h4><%= link_to "Создать петицию", new_petition_path  %></h4></li>
+              <% if current_user %>
+                <li><h4><%= link_to "Мои петиции", petitions_path(my: true)  %></h4></li>
+              <% end %>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+      <footer>
+        <p>&copy; OnlinePetitions 2016</p>
+      </footer>
+    </div>
 </body>
 </html>

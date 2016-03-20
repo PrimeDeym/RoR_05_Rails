@@ -1,3 +1,15 @@
 <h2>Петиция</h2>
-<p><strong><%= @petition.title %></strong></p>
+<h3><%= @petition.title %></h3>
+<p><%= @petition.created_at_new %></p> 
 <p><%= @petition.text %></p>
+<p>Голосов: <%= @petition.votes.count %></p>
+
+<% if current_user.nil? %>  
+  <p class="text-danger">Только зарестрированные пользователи могут голосовать</p> 
+<% elsif @petition.votes.exists?(user_id: current_user.id) %>
+  <p class="text-success">Вы уже голосовали за данную петицию</p>
+<% elsif @petition.user_id == current_user.id %>
+  <p></p>
+<% else %>
+  <p><%= button_to 'Поддержать', petition_votes_path(@petition.id), class: 'btn btn-success' %></p>
+<% end %>

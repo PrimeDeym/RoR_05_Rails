@@ -1,11 +1,19 @@
 <h2>Последние петиции</h2>
-<table cellspacing="1" border="1" cellpadding="1" width="600">
-  <th> Название </th>
-  <th> Автор </th>
-    <% @petitions.each do |petition| %>
+<table class="table">
+  <thead>
     <tr>
-      <td><%= link_to petition.title, petition_path(petition) %></td>
-      <td><%= petition.user.first_name %> <%= petition.user.last_name %></td>
+      <th class="col-md-6">Петиция</th>
+      <th class="col-md-3">Автор</th>
+      <th class="col-md-1 text-center">Голоса</th>
+      <th class="col-md-3 text-center">Дата создания</th>
+    </tr>
+  </thead>
+  <% @petitions.each do |petition| %>
+    <tr>
+      <td class="col-md-5"><%= link_to petition.title, petition_path(petition) %></td>
+      <td class="col-md-3"><%= petition.user.first_name %> <%= petition.user.last_name %></td>
+      <td class="col-md-1 text-center"><%= petition.votes.count %></td>
+      <td class="col-md-3 text-center"><%= petition.created_at_new %></td>
     </tr>
   <% end %>
 </table>

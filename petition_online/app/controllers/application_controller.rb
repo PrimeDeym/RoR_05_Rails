@@ -12,6 +12,6 @@ private
     redirect_to new_session_path if current_user.nil?
   end
 
-  helper_method :current_user
+helper_method :current_user
 
 end
