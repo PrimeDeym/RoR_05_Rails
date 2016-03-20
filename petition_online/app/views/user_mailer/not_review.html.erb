@@ -1,0 +1,3 @@
+<p>Здравствуйте, <%= @petition.user.first_name %> </p>
+
+<p>К сожалению, ваша петиция  <%= @petition.title %>  собрала только <%= @petition.votes.count %> голосов из необходимых <%= Petition::VOTES_TO_WIN %>. </p>

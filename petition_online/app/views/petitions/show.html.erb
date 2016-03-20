@@ -1,15 +1,11 @@
-<h2>Петиция</h2>
-<h3><%= @petition.title %></h3>
-<p><%= @petition.created_at_new %></p> 
-<p><%= @petition.text %></p>
-<p>Голосов: <%= @petition.votes.count %></p>
+<%= render 'petition' %>
 
 <% if current_user.nil? %>  
-  <p class="text-danger">Только зарестрированные пользователи могут голосовать</p> 
+  <p class="text-danger">Только зарегестрированные пользователи могут голосовать</p> 
 <% elsif @petition.votes.exists?(user_id: current_user.id) %>
   <p class="text-success">Вы уже голосовали за данную петицию</p>
-<% elsif @petition.user_id == current_user.id %>
-  <p></p>
+<% elsif @petition.expired %>
+  <p class="text-danger">Голосование уже не возможно</p>
 <% else %>
-  <p><%= button_to 'Поддержать', petition_votes_path(@petition.id), class: 'btn btn-success' %></p>
+  <p><%= button_to 'Поддержать', votes_path({ petition_id: @petition.id }), class: 'btn btn-success' %></p>
 <% end %>

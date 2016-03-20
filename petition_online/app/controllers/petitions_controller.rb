@@ -29,30 +29,30 @@ class PetitionsController < ApplicationController
   end
 
   def edit
-    @petition = Petition.find(params[:id])
+    @petition = current_user.petitions.find(params[:id])
+    if @petition.expired or @petition.votes_to_win
+      redirect_to petition_path
+      flash[:error] = 'Вы не можете редактировать эту петицию'
+    end
   end
 
   def update
-    @petition = Petition.find(params[:id])
-    if @petition.update(petition_params)
+    petition = current_user.petitions.find(params[:id])
+    if petition.update(petition_params)
       flash[:notice] = "Петиция обновлена"
-      redirect_to @petition
+      redirect_to petition
     else
       render 'edit'
     end
   end
 
   def destroy
-    @petition = Petition.find(params[:id])
-    @petition.destroy
-
-    redirect_to petitions_path(:my => true)
+    petition = current_user.petitions.find(params[:id])
+    petition.destroy
+ 
+    redirect_to action: :index
     flash[:error] = "Петиция удалена"
   end
-
-  # def user_petitions
-  #   @petitions = current_user.petitions
-  # end
 
 private 
   def petition_params

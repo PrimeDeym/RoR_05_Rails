@@ -17,10 +17,10 @@
     <tr>
       <td class="col-md-5"><%= link_to petition.title, petition_path(petition) %></td>
       <% unless params[:my] %>
-        <td class="col-md-3"><%= petition.user.first_name %> <%= petition.user.last_name %></td>
+        <td class="col-md-3"><%= petition.user.name %></td>
       <% end %>
       <td class="col-md-1 text-center"><%= petition.votes.count %></td>
-      <td class="col-md-3 text-center"><%= petition.created_at_new %></td>
+      <td class="col-md-3 text-center"><%= petition.created_at.strftime('%d/%m/%Y %H:%M') %></td>
       <% if params[:my] %>
         <td class="col-md-3 text-center"><%= link_to 'Изменить', edit_petition_path(petition) %></td>
         <td class="col-md-3 text-center"><%= link_to 'Удалить', petition_path(petition), method: :delete, data: { confirm: 'Вы уверены?' } %></</td>
