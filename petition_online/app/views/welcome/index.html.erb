@@ -11,9 +11,9 @@
   <% @petitions.each do |petition| %>
     <tr>
       <td class="col-md-5"><%= link_to petition.title, petition_path(petition) %></td>
-      <td class="col-md-3"><%= petition.user.first_name %> <%= petition.user.last_name %></td>
+      <td class="col-md-3"><%= petition.user.name %></td>
       <td class="col-md-1 text-center"><%= petition.votes.count %></td>
-      <td class="col-md-3 text-center"><%= petition.created_at_new %></td>
+      <td class="col-md-3 text-center"><%= petition.created_at.strftime('%d/%m/%Y %H:%M') %></td>
     </tr>
   <% end %>
 </table>

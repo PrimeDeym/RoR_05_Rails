@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :petitions do
-    resources :votes, only: [:create]
-  end
+  resources :petitions
+  resources :votes, only: [:create]
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,11 +1,21 @@
 class Petition < ActiveRecord::Base
+  VOTES_TO_WIN = 100
+  ACTIVE_PETITION_DAYS = 30
+
+  validates :title, :text, presence: true
+  validate :expired
+
   belongs_to :user
   has_many :votes
-  validates :user_id, presence: true
+
   default_scope { order(:created_at => :desc) }
 
-  def created_at_new
-    created_at.strftime('%d/%m/%Y %H:%M')
+  def votes_to_win
+    votes.count >= VOTES_TO_WIN
+  end
+
+  def expired
+    created_at < ACTIVE_PETITION_DAYS.days.ago
   end
 
 end

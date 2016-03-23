@@ -1,12 +1,12 @@
 class VotesController < ApplicationController
+  before_filter :authorize
+
   def create
-    @petition = Petition.find(params[:petition_id])   
-    @vote = @petition.votes.create(vote_params)
-    @vote[:user_id] = current_user.id
-    if @vote.save
-      flash[:notice] = 'Спасибо за ваш голос!'
-      redirect_to @petition
-    end  
+      vote = current_user.votes.create(vote_params)
+      if vote.save 
+        flash[:notice] = 'Спасибо за ваш голос!'
+        redirect_to vote.petition
+      end
   end
 
 private
